@@ -1,5 +1,6 @@
 import mongodb from 'mongodb';
 
+
 export default class MoviesDAO {
     static movies; // Stores the reference to the db
 
@@ -65,6 +66,8 @@ export default class MoviesDAO {
     }
 
     static async getMovieById(id) {
+        console.log(id);
+
         try {
             // Use aggregate method to provide a sequence of data aggregation operations
             return await MoviesDAO.movies.aggregate(
@@ -87,7 +90,7 @@ export default class MoviesDAO {
                 ]
             ).next();
         } catch (e) {
-            console.error("Something went wrong in getMovieById");
+            console.error(`Something went wrong in getMovieById : ${e.message}`);
             throw e;
         }
     }
